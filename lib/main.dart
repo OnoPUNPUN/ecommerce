@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:ecommerce/app/app.dart';
 import 'package:ecommerce/firebase_options.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,16 @@ import 'package:flutter/material.dart';
   !!Things to do before starting making the app:
     1. Localization
     2. Theme
-    3. Crashlytics
-    4. Analytics
+    3. Crashlytics(Done)
+    4. Analytics(Done)
 */
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Analytics
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   // Pass all uncaught "fatel" errors from the framework to Crashlytics
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
